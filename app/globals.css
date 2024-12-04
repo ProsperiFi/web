@@ -20,14 +20,22 @@
   initial-value: 0;
 }
 
+@property --hue-orange {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 29;
+}
+
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --theme-heading-text: hsl(var(--hue-blue), 100%, 50%);
+  --theme-heading-text: hsl(var(--hue-blue), 100%, 55%);
   --theme-heading-dark: hsl(var(--hue-blue), 100%, 20%);
   --theme-text-green: hsl(var(--hue-green), 90%, 45%);
   --theme-text-red: hsl(var(--hue-red), 100%, 60%);
   --theme-text-blue: hsl(var(--hue-blue), 100%, 50%);
+  --theme-text-orange: hsl(var(--hue-orange), 100%, 50%);
 }
 
 body {
@@ -44,3 +52,8 @@ body {
 table {
   width: 100%;
 }
+
+.text-blue { color: var(--theme-text-blue) }
+.text-red { color: var(--theme-text-red) }
+.text-orange { color: var(--theme-text-orange) }
+.text-green { color: var(--theme-text-green) }
