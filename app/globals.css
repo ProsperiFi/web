@@ -14,11 +14,20 @@
   initial-value: 100;
 }
 
+@property --hue-red {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
   --theme-heading-text: hsl(var(--hue-blue), 100%, 50%);
   --theme-heading-dark: hsl(var(--hue-blue), 100%, 20%);
+  --theme-text-green: hsl(var(--hue-green), 90%, 45%);
+  --theme-text-red: hsl(var(--hue-red), 100%, 60%);
+  --theme-text-blue: hsl(var(--hue-blue), 100%, 50%);
 }
 
 body {
@@ -30,4 +39,8 @@ body {
 .brand {
   color: var(--theme-heading-text);
   text-shadow: 1px 1px var(--theme-heading-dark);
+}
+
+table {
+  width: 100%;
 }

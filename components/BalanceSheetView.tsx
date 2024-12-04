@@ -1,11 +1,13 @@
 import type { BalanceSheet } from "@/types/BalanceSheet";
 
 import t from "@/functions/t";
+import asCurrency from "@/functions/asCurrency";
 
 export default function BalanceSheetView({ data }: { data: BalanceSheet }) {
   if (!data) return <h1>BS: No data</h1>
   let totalAssets = 0
   let totalLiabilities = 0
+  let netValue = 0
 
   if (data.assets) {
     if (data.assets?.cash_equivalents) { totalAssets += data.assets.cash_equivalents }
@@ -16,22 +18,23 @@ export default function BalanceSheetView({ data }: { data: BalanceSheet }) {
     if (data.liabilities?.debt) { totalLiabilities += data.liabilities.debt }
   }
 
+  netValue = totalAssets - totalLiabilities
+
   return (
     <>
-      <h1>Balance Sheet</h1>
       {totalAssets > 0 && (
         <table>
           <thead>
-            <tr><th colSpan={2}>Assets</th></tr>
+            <tr style={{ color: "var(--theme-text-green)" }}><th colSpan={2}>Assets</th></tr>
           </thead>
           <tbody>
             <tr style={{ display: data.assets?.cash_equivalents ? "inherit" : "none" }}>
-                <td>{t("title_cash_equivalents", "finance")}</td>
-                <td>{data.assets?.cash_equivalents}</td>
+                <td style={{ color: "var(--theme-text-green)" }}>{t("title_cash_equivalents", "finance")}</td>
+                <td style={{ color: "var(--theme-text-green)" }}>{asCurrency(data.assets?.cash_equivalents || 0)}</td>
             </tr>
             <tr style={{ display: data.assets?.securities ? "inherit" : "none" }}>
                 <td>Securities</td>
-                <td>{data.assets?.securities}</td>
+                <td>{asCurrency(data.assets?.securities || 0)}</td>
             </tr>
           </tbody>
         </table>
@@ -39,11 +42,11 @@ export default function BalanceSheetView({ data }: { data: BalanceSheet }) {
       {totalAssets == 0 && (
         <table>
           <thead>
-            <tr><th>Assets</th></tr>
+            <tr style={{ color: "var(--theme-text-green)" }}><th>Assets</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td>No assets currently on Balance Sheet</td>
+              <td style={{ color: "var(--theme-text-green)" }}>No assets currently on Balance Sheet</td>
             </tr>
           </tbody>
         </table>
@@ -52,12 +55,12 @@ export default function BalanceSheetView({ data }: { data: BalanceSheet }) {
       {totalLiabilities > 0 && (
         <table>
           <thead>
-            <tr><th colSpan={2}>Liabilities</th></tr>
+            <tr style={{ color: "var(--theme-text-red)" }}><th colSpan={2}>Liabilities</th></tr>
           </thead>
           <tbody>
             <tr style={{ display: data.liabilities?.debt ? "inherit" : "none" }}>
-                <td>{t("title_debts", "finance")}</td>
-                <td>{data.liabilities?.debt}</td>
+                <td style={{ color: "var(--theme-text-red)" }}>{t("title_debts", "finance")}</td>
+                <td style={{ color: "var(--theme-text-red)" }}>{data.liabilities?.debt}</td>
             </tr>
           </tbody>
         </table>
@@ -65,15 +68,24 @@ export default function BalanceSheetView({ data }: { data: BalanceSheet }) {
       {totalLiabilities == 0 && (
         <table>
           <thead>
-            <tr><th>Liabilities</th></tr>
+            <tr style={{ color: "var(--theme-text-red)" }}><th>Liabilities</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td>No liabilities currently on Balance Sheet</td>
+              <td style={{ color: "var(--theme-text-red)" }}>No liabilities currently on Balance Sheet</td>
             </tr>
           </tbody>
         </table>
       )}
+
+      <table>
+        <tbody>
+          <tr style={{ color: "var(--theme-text-blue)" }}>
+            <td>Net Value</td>
+            <td>{asCurrency(netValue)}</td>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 }
