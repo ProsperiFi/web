@@ -1,5 +1,5 @@
 import t from '@/functions/t';
-import { Open_Sans, Nunito, Roboto_Slab } from "next/font/google"
+import { Nunito, Roboto_Slab } from "next/font/google"
 import "./globals.css";
 
 const rSlab = Roboto_Slab({ subsets: ['latin'] })
