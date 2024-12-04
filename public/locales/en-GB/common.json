@@ -1,8 +1,9 @@
 {
-    "appname": "ProsperiFi",
+    "app_name": "ProsperiFi",
+    "app_description": "An internet business aiming to improve everyone's financial lives.",
     "tagline": "The worlds first common good business for profit sharing amongst investors",
     "month_jan": "January",
     "month_apr": "April",
     "month_jul": "July",
-    "month_oct": "Oct"
+    "month_oct": "October"
 }
