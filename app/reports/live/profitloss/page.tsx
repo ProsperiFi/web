@@ -1,6 +1,6 @@
 'use client'
 
-import t from '@/functions/t';
+// import t from '@/functions/t';
 
 export default function ProfitLossLive() {
   const year = 2025
