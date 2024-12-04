@@ -1,5 +1,4 @@
 import t from '@/functions/t';
-import Head from 'next/head';
 
 export const metadata = {
   title: t("app_name"),
