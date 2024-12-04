@@ -7,9 +7,6 @@ interface TranslationJson {
 export const t = (keyname: string) => {
     const translations: TranslationJson = enGB;
 
-    console.log('translations', translations)
-    console.log('translations keyname', translations[keyname])
-
     if (!translations[keyname]) { return keyname }
     return translations[keyname]
 }
